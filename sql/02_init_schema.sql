@@ -1,7 +1,3 @@
--- =====================================================
--- Database Initialization for Bank Marketing Pipeline
--- Run this on bank_db database
--- =====================================================
 
 -- Connect to bank_db
 \c bank_db
@@ -11,9 +7,6 @@ CREATE SCHEMA IF NOT EXISTS raw;
 CREATE SCHEMA IF NOT EXISTS etl;
 CREATE SCHEMA IF NOT EXISTS dw;
 
--- =====================================================
--- RAW SCHEMA: Landing zone for CSV data
--- =====================================================
 
 -- Raw table to store bank data from CSV (all text to handle any format)
 DROP TABLE IF EXISTS raw.bank_raw CASCADE;
@@ -39,9 +32,8 @@ CREATE TABLE raw.bank_raw (
   loaded_at        TIMESTAMP DEFAULT NOW()
 );
 
--- =====================================================
--- ETL SCHEMA: Staging and logging tables
--- =====================================================
+
+
 
 -- ETL log table to track pipeline runs
 DROP TABLE IF EXISTS etl.etl_log CASCADE;
@@ -60,9 +52,6 @@ CREATE INDEX idx_etl_log_created_at ON etl.etl_log(created_at);
 -- Staging table will be created dynamically by ETL script
 -- (etl.bank_staging_clean)
 
--- =====================================================
--- DW SCHEMA: Data Warehouse tables
--- =====================================================
 
 -- Bank fact table (cleaned and validated data)
 DROP TABLE IF EXISTS dw.bank_fact CASCADE;
@@ -95,9 +84,7 @@ CREATE INDEX idx_bank_fact_marital ON dw.bank_fact(marital);
 CREATE INDEX idx_bank_fact_age ON dw.bank_fact(age);
 CREATE INDEX idx_bank_fact_month ON dw.bank_fact(month);
 
--- =====================================================
--- Grant permissions (adjust as needed)
--- =====================================================
+
 
 -- Grant all privileges to airflow user
 GRANT ALL PRIVILEGES ON SCHEMA raw TO airflow;
@@ -112,9 +99,7 @@ GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA raw TO airflow;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA etl TO airflow;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA dw TO airflow;
 
--- =====================================================
--- Verification queries
--- =====================================================
+
 
 -- Check schemas
 SELECT schema_name 
