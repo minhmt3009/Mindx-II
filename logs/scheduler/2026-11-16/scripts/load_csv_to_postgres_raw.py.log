@@ -143,3 +143,28 @@
 [2026-11-16T12:56:29.821+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:56:29.820+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
 [2026-11-16T12:56:30.657+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
 [2026-11-16T12:56:30.702+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py took 0.906 seconds
+[2026-11-16T12:57:01.133+0000] {processor.py:161} INFO - Started process (PID=880) to work on /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:57:01.139+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py for tasks to queue
+[2026-11-16T12:57:01.146+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:57:01.145+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:57:01.884+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:57:01.950+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py took 0.825 seconds
+[2026-11-16T12:57:32.806+0000] {processor.py:161} INFO - Started process (PID=903) to work on /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:57:32.810+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py for tasks to queue
+[2026-11-16T12:57:32.814+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:57:32.813+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:57:33.429+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:57:33.468+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py took 0.673 seconds
+[2026-11-16T12:58:05.739+0000] {processor.py:161} INFO - Started process (PID=926) to work on /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:58:05.746+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py for tasks to queue
+[2026-11-16T12:58:05.754+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:58:05.751+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:58:06.701+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:58:06.762+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py took 1.042 seconds
+[2026-11-16T12:58:37.556+0000] {processor.py:161} INFO - Started process (PID=949) to work on /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:58:37.562+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py for tasks to queue
+[2026-11-16T12:58:37.567+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:58:37.566+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:58:38.392+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:58:38.441+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py took 0.894 seconds
+[2026-11-16T12:59:09.235+0000] {processor.py:161} INFO - Started process (PID=972) to work on /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:59:09.240+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py for tasks to queue
+[2026-11-16T12:59:09.245+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:59:09.244+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:59:09.908+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:59:09.954+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py took 0.731 seconds
