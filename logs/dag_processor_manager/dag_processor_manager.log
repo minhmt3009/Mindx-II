@@ -1371,3 +1371,16 @@ File Path                                              PID    Runtime      # DAG
 /opt/airflow/dags/scripts/debug/test_connection.py                              0           0  1.59s           2026-11-16T12:50:41
 /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py                                     1           0  0.35s           2026-11-16T12:50:38
 ================================================================================
+[2026-11-16T12:51:19.269+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/scripts/load_csv_to_postgres_raw.py                           0           0  1.17s           2026-11-16T12:51:11
+/opt/airflow/dags/scripts/debug/debug_ingest.py                                 0           0  1.48s           2026-11-16T12:51:12
+/opt/airflow/dags/scripts/debug/test_connection.py                              0           0  1.24s           2026-11-16T12:51:13
+/opt/airflow/dags/bank_e2e_csv_to_dw_dag.py                                     1           0  0.38s           2026-11-16T12:51:08
+================================================================================
+[2026-11-16T12:51:42.869+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2026-11-16T12:51:43.669+0000] {manager.py:741} INFO - There are 4 files in /opt/airflow/dags
