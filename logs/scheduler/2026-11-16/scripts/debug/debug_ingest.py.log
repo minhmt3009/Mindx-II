@@ -1105,3 +1105,85 @@ Now you can:
 [2026-11-16T12:55:26.984+0000] {logging_mixin.py:188} INFO - 2. Or run: python /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
 [2026-11-16T12:55:26.986+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/debug/debug_ingest.py
 [2026-11-16T12:55:27.034+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/debug/debug_ingest.py took 0.891 seconds
+[2026-11-16T12:55:57.281+0000] {processor.py:161} INFO - Started process (PID=824) to work on /opt/airflow/dags/scripts/debug/debug_ingest.py
+[2026-11-16T12:55:57.285+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/scripts/debug/debug_ingest.py for tasks to queue
+[2026-11-16T12:55:57.291+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:55:57.289+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/debug/debug_ingest.py
+[2026-11-16T12:55:57.343+0000] {logging_mixin.py:188} INFO - ======================================================================
+[2026-11-16T12:55:57.345+0000] {logging_mixin.py:188} INFO - DEBUG: INGEST CSV TO RAW
+[2026-11-16T12:55:57.347+0000] {logging_mixin.py:188} INFO - ======================================================================
+[2026-11-16T12:55:57.349+0000] {logging_mixin.py:188} INFO - 
+[1] Checking environment variables...
+[2026-11-16T12:55:57.351+0000] {logging_mixin.py:188} INFO -   DB_HOST: postgres
+[2026-11-16T12:55:57.352+0000] {logging_mixin.py:188} INFO -   DB_PORT: 5432
+[2026-11-16T12:55:57.354+0000] {logging_mixin.py:188} INFO -   DB_NAME: bank_db
+[2026-11-16T12:55:57.357+0000] {logging_mixin.py:188} INFO -   DB_USER: airflow
+[2026-11-16T12:55:57.359+0000] {logging_mixin.py:188} INFO -   DB_PASS: airflow
+[2026-11-16T12:55:57.361+0000] {logging_mixin.py:188} INFO -   CSV_PATH: /opt/airflow/dags/data/Bank.csv
+[2026-11-16T12:55:57.364+0000] {logging_mixin.py:188} INFO - 
+[2] Importing libraries...
+[2026-11-16T12:55:57.897+0000] {logging_mixin.py:188} INFO -   ✓ pandas imported
+[2026-11-16T12:55:57.900+0000] {logging_mixin.py:188} INFO -   ✓ psycopg2 imported
+[2026-11-16T12:55:57.902+0000] {logging_mixin.py:188} INFO - 
+[3] Testing CSV file...
+[2026-11-16T12:55:57.904+0000] {logging_mixin.py:188} INFO -   CSV Path: /opt/airflow/dags/data/Bank.csv
+[2026-11-16T12:55:57.911+0000] {logging_mixin.py:188} INFO -   ✓ CSV file exists
+[2026-11-16T12:55:57.994+0000] {logging_mixin.py:188} INFO -   ✓ CSV loaded: 11162 rows, 17 columns
+[2026-11-16T12:55:57.997+0000] {logging_mixin.py:188} INFO -   Columns: ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'deposit']
+[2026-11-16T12:55:58.000+0000] {logging_mixin.py:188} INFO -   ✓ All 17 columns present
+[2026-11-16T12:55:58.002+0000] {logging_mixin.py:188} INFO - 
+[4] Testing database connection...
+[2026-11-16T12:55:58.004+0000] {logging_mixin.py:188} INFO -   Connection params: airflow@postgres:5432/bank_db
+[2026-11-16T12:55:58.016+0000] {logging_mixin.py:188} INFO -   ✓ Database connection successful
+[2026-11-16T12:55:58.023+0000] {logging_mixin.py:188} INFO -   ✓ Table raw.bank_raw exists
+[2026-11-16T12:55:58.034+0000] {logging_mixin.py:188} INFO -   Table columns (19): ['raw_id', 'age_text', 'job', 'marital', 'education', 'default_text', 'balance_text', 'housing', 'loan', 'contact', 'day_text', 'month', 'duration_text', 'campaign_text', 'pdays_text', 'previous_text', 'poutcome', 'deposit', 'loaded_at']
+[2026-11-16T12:55:58.038+0000] {logging_mixin.py:188} INFO - 
+======================================================================
+[2026-11-16T12:55:58.041+0000] {logging_mixin.py:188} INFO - ✓ ALL CHECKS PASSED - Ready to run ingest!
+[2026-11-16T12:55:58.044+0000] {logging_mixin.py:188} INFO - ======================================================================
+[2026-11-16T12:55:58.047+0000] {logging_mixin.py:188} INFO - 
+Now you can:
+[2026-11-16T12:55:58.049+0000] {logging_mixin.py:188} INFO - 1. Trigger the DAG in Airflow UI
+[2026-11-16T12:55:58.051+0000] {logging_mixin.py:188} INFO - 2. Or run: python /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:55:58.053+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/debug/debug_ingest.py
+[2026-11-16T12:55:58.093+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/debug/debug_ingest.py took 0.824 seconds
+[2026-11-16T12:56:28.478+0000] {processor.py:161} INFO - Started process (PID=847) to work on /opt/airflow/dags/scripts/debug/debug_ingest.py
+[2026-11-16T12:56:28.481+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/scripts/debug/debug_ingest.py for tasks to queue
+[2026-11-16T12:56:28.486+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:56:28.485+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/debug/debug_ingest.py
+[2026-11-16T12:56:28.541+0000] {logging_mixin.py:188} INFO - ======================================================================
+[2026-11-16T12:56:28.544+0000] {logging_mixin.py:188} INFO - DEBUG: INGEST CSV TO RAW
+[2026-11-16T12:56:28.547+0000] {logging_mixin.py:188} INFO - ======================================================================
+[2026-11-16T12:56:28.549+0000] {logging_mixin.py:188} INFO - 
+[1] Checking environment variables...
+[2026-11-16T12:56:28.551+0000] {logging_mixin.py:188} INFO -   DB_HOST: postgres
+[2026-11-16T12:56:28.553+0000] {logging_mixin.py:188} INFO -   DB_PORT: 5432
+[2026-11-16T12:56:28.556+0000] {logging_mixin.py:188} INFO -   DB_NAME: bank_db
+[2026-11-16T12:56:28.558+0000] {logging_mixin.py:188} INFO -   DB_USER: airflow
+[2026-11-16T12:56:28.561+0000] {logging_mixin.py:188} INFO -   DB_PASS: airflow
+[2026-11-16T12:56:28.563+0000] {logging_mixin.py:188} INFO -   CSV_PATH: /opt/airflow/dags/data/Bank.csv
+[2026-11-16T12:56:28.565+0000] {logging_mixin.py:188} INFO - 
+[2] Importing libraries...
+[2026-11-16T12:56:29.314+0000] {logging_mixin.py:188} INFO -   ✓ pandas imported
+[2026-11-16T12:56:29.318+0000] {logging_mixin.py:188} INFO -   ✓ psycopg2 imported
+[2026-11-16T12:56:29.321+0000] {logging_mixin.py:188} INFO - 
+[3] Testing CSV file...
+[2026-11-16T12:56:29.363+0000] {logging_mixin.py:188} INFO -   CSV Path: /opt/airflow/dags/data/Bank.csv
+[2026-11-16T12:56:29.406+0000] {logging_mixin.py:188} INFO -   ✓ CSV file exists
+[2026-11-16T12:56:29.548+0000] {logging_mixin.py:188} INFO -   ✓ CSV loaded: 11162 rows, 17 columns
+[2026-11-16T12:56:29.551+0000] {logging_mixin.py:188} INFO -   Columns: ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'deposit']
+[2026-11-16T12:56:29.555+0000] {logging_mixin.py:188} INFO -   ✓ All 17 columns present
+[2026-11-16T12:56:29.558+0000] {logging_mixin.py:188} INFO - 
+[4] Testing database connection...
+[2026-11-16T12:56:29.563+0000] {logging_mixin.py:188} INFO -   Connection params: airflow@postgres:5432/bank_db
+[2026-11-16T12:56:29.580+0000] {logging_mixin.py:188} INFO -   ✓ Database connection successful
+[2026-11-16T12:56:29.590+0000] {logging_mixin.py:188} INFO -   ✓ Table raw.bank_raw exists
+[2026-11-16T12:56:29.613+0000] {logging_mixin.py:188} INFO -   Table columns (19): ['raw_id', 'age_text', 'job', 'marital', 'education', 'default_text', 'balance_text', 'housing', 'loan', 'contact', 'day_text', 'month', 'duration_text', 'campaign_text', 'pdays_text', 'previous_text', 'poutcome', 'deposit', 'loaded_at']
+[2026-11-16T12:56:29.617+0000] {logging_mixin.py:188} INFO - 
+======================================================================
+[2026-11-16T12:56:29.619+0000] {logging_mixin.py:188} INFO - ✓ ALL CHECKS PASSED - Ready to run ingest!
+[2026-11-16T12:56:29.622+0000] {logging_mixin.py:188} INFO - ======================================================================
+[2026-11-16T12:56:29.624+0000] {logging_mixin.py:188} INFO - 
+Now you can:
+[2026-11-16T12:56:29.627+0000] {logging_mixin.py:188} INFO - 1. Trigger the DAG in Airflow UI
+[2026-11-16T12:56:29.631+0000] {logging_mixin.py:188} INFO - 2. Or run: python /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:56:29.634+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/debug/debug_ingest.py
+[2026-11-16T12:56:29.682+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/debug/debug_ingest.py took 1.211 seconds

@@ -133,3 +133,13 @@
 [2026-11-16T12:55:27.162+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:55:27.162+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
 [2026-11-16T12:55:27.705+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
 [2026-11-16T12:55:27.752+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py took 0.602 seconds
+[2026-11-16T12:55:58.211+0000] {processor.py:161} INFO - Started process (PID=834) to work on /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:55:58.214+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py for tasks to queue
+[2026-11-16T12:55:58.217+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:55:58.217+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:55:58.830+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:55:58.876+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py took 0.672 seconds
+[2026-11-16T12:56:29.809+0000] {processor.py:161} INFO - Started process (PID=857) to work on /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:56:29.816+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py for tasks to queue
+[2026-11-16T12:56:29.821+0000] {logging_mixin.py:188} INFO - [2026-11-16T12:56:29.820+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:56:30.657+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py
+[2026-11-16T12:56:30.702+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/scripts/load_csv_to_postgres_raw.py took 0.906 seconds
