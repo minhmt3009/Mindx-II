@@ -1,0 +1,17 @@
+[2026-11-09T12:56:35.476+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bank_e2e_csv_to_dw.post_run_check manual__2026-11-09T12:56:27.106269+00:00 [queued]>
+[2026-11-09T12:56:35.490+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bank_e2e_csv_to_dw.post_run_check manual__2026-11-09T12:56:27.106269+00:00 [queued]>
+[2026-11-09T12:56:35.491+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-11-09T12:56:35.507+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): post_run_check> on 2026-11-09 12:56:27.106269+00:00
+[2026-11-09T12:56:35.513+0000] {standard_task_runner.py:60} INFO - Started process 495 to run task
+[2026-11-09T12:56:35.517+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'bank_e2e_csv_to_dw', 'post_run_check', 'manual__2026-11-09T12:56:27.106269+00:00', '--job-id', '17', '--raw', '--subdir', 'DAGS_FOLDER/bank_e2e_csv_to_dw_dag.py', '--cfg-path', '/tmp/tmpht4uamjb']
+[2026-11-09T12:56:35.521+0000] {standard_task_runner.py:88} INFO - Job 17: Subtask post_run_check
+[2026-11-09T12:56:35.592+0000] {task_command.py:423} INFO - Running <TaskInstance: bank_e2e_csv_to_dw.post_run_check manual__2026-11-09T12:56:27.106269+00:00 [running]> on host 18dc5bb99e4d
+[2026-11-09T12:56:35.699+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mindx_de' AIRFLOW_CTX_DAG_ID='bank_e2e_csv_to_dw' AIRFLOW_CTX_TASK_ID='post_run_check' AIRFLOW_CTX_EXECUTION_DATE='2026-11-09T12:56:27.106269+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-09T12:56:27.106269+00:00'
+[2026-11-09T12:56:35.702+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-11-09T12:56:35.704+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python "/opt/***/dags/scripts/post_run_check.py"']
+[2026-11-09T12:56:35.717+0000] {subprocess.py:86} INFO - Output:
+[2026-11-09T12:56:35.866+0000] {subprocess.py:93} INFO - CHECK OK | raw_cnt=11162 | dw_cnt=22324 | deposit_yes=10578 | deposit_no=11746
+[2026-11-09T12:56:35.872+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-11-09T12:56:35.908+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=bank_e2e_csv_to_dw, task_id=post_run_check, execution_date=20261109T125627, start_date=20261109T125635, end_date=20261109T125635
+[2026-11-09T12:56:35.937+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-11-09T12:56:35.961+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

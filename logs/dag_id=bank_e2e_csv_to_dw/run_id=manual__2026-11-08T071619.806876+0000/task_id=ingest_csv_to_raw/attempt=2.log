@@ -1,0 +1,34 @@
+[2026-11-08T07:17:26.114+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bank_e2e_csv_to_dw.ingest_csv_to_raw manual__2026-11-08T07:16:19.806876+00:00 [queued]>
+[2026-11-08T07:17:26.132+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bank_e2e_csv_to_dw.ingest_csv_to_raw manual__2026-11-08T07:16:19.806876+00:00 [queued]>
+[2026-11-08T07:17:26.135+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2026-11-08T07:17:26.190+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): ingest_csv_to_raw> on 2026-11-08 07:16:19.806876+00:00
+[2026-11-08T07:17:26.205+0000] {standard_task_runner.py:60} INFO - Started process 240 to run task
+[2026-11-08T07:17:26.216+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'bank_e2e_csv_to_dw', 'ingest_csv_to_raw', 'manual__2026-11-08T07:16:19.806876+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/bank_e2e_csv_to_dw_dag.py', '--cfg-path', '/tmp/tmpjz9dcznr']
+[2026-11-08T07:17:26.227+0000] {standard_task_runner.py:88} INFO - Job 7: Subtask ingest_csv_to_raw
+[2026-11-08T07:17:26.443+0000] {task_command.py:423} INFO - Running <TaskInstance: bank_e2e_csv_to_dw.ingest_csv_to_raw manual__2026-11-08T07:16:19.806876+00:00 [running]> on host 18adbdf23c9e
+[2026-11-08T07:17:26.780+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mindx_de' AIRFLOW_CTX_DAG_ID='bank_e2e_csv_to_dw' AIRFLOW_CTX_TASK_ID='ingest_csv_to_raw' AIRFLOW_CTX_EXECUTION_DATE='2026-11-08T07:16:19.806876+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-11-08T07:16:19.806876+00:00'
+[2026-11-08T07:17:26.786+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-11-08T07:17:26.793+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python "/opt/***/dags/scripts/load_csv_to_postgres_raw.py"']
+[2026-11-08T07:17:26.825+0000] {subprocess.py:86} INFO - Output:
+[2026-11-08T07:17:28.210+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-11-08T07:17:28.214+0000] {subprocess.py:93} INFO -   File "/opt/***/dags/scripts/load_csv_to_postgres_raw.py", line 70, in <module>
+[2026-11-08T07:17:28.217+0000] {subprocess.py:93} INFO -     main()
+[2026-11-08T07:17:28.220+0000] {subprocess.py:93} INFO -   File "/opt/***/dags/scripts/load_csv_to_postgres_raw.py", line 33, in main
+[2026-11-08T07:17:28.222+0000] {subprocess.py:93} INFO -     conn = psycopg2.connect(**DB)
+[2026-11-08T07:17:28.227+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+[2026-11-08T07:17:28.231+0000] {subprocess.py:93} INFO -     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+[2026-11-08T07:17:28.234+0000] {subprocess.py:93} INFO - psycopg2.OperationalError: connection to server at "postgres" (172.19.0.2), port 8888 failed: Connection refused
+[2026-11-08T07:17:28.236+0000] {subprocess.py:93} INFO - 	Is the server running on that host and accepting TCP/IP connections?
+[2026-11-08T07:17:28.239+0000] {subprocess.py:93} INFO - 
+[2026-11-08T07:17:28.357+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-11-08T07:17:28.387+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-11-08T07:17:28.398+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=bank_e2e_csv_to_dw, task_id=ingest_csv_to_raw, execution_date=20261108T071619, start_date=20261108T071726, end_date=20261108T071728
+[2026-11-08T07:17:28.456+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 7 for task ingest_csv_to_raw (Bash command failed. The command returned a non-zero exit code 1.; 240)
+[2026-11-08T07:17:28.510+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-11-08T07:17:28.628+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

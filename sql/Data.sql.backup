@@ -1,0 +1,120 @@
+-- Tạo bảng dữ liệu thô
+DROP TABLE IF EXISTS Bank;
+CREATE TABLE Bank(
+	age int,
+	job varchar(50),
+	marital varchar(20),
+	education varchar(20),
+	"default" varchar(5),
+	balance int,
+	housing varchar(5),
+	loan varchar(5),
+	contact varchar(20),
+	day int,
+	month char(3),
+	duration int,
+	campaign int,
+	pdays int,
+	previous int,
+	poutcome varchar(10),
+	deposit varchar(5)
+);
+
+
+-- Clean/validate
+SELECT
+    COUNT(*) AS total_rows,
+
+    SUM(CASE
+        WHEN age IS NULL OR age NOT BETWEEN 18 AND 100
+        THEN 1 ELSE 0
+    END) AS invalid_age,
+
+    SUM(CASE
+        WHEN balance IS NULL
+        THEN 1 ELSE 0
+    END) AS missing_balance,
+
+    SUM(CASE
+        WHEN duration IS NULL OR duration < 0
+        THEN 1 ELSE 0
+    END) AS invalid_duration,
+
+    SUM(CASE
+        WHEN deposit IS NULL
+          OR LOWER(TRIM(deposit)) NOT IN ('yes', 'no')
+        THEN 1 ELSE 0
+    END) AS invalid_deposit
+
+FROM Bank;
+
+
+-- Tạo bảng clean
+CREATE TABLE IF NOT EXISTS bank_clean (LIKE Bank INCLUDING ALL);
+TRUNCATE TABLE bank_clean;
+
+INSERT INTO bank_clean (
+	age, job, marital, education, "default",
+    balance, housing, loan, contact, day,
+    month, duration, campaign, pdays,
+    previous, poutcome, deposit
+)
+
+SELECT
+	age,
+	LOWER(TRIM(job)),
+	LOWER(TRIM(marital)),
+	LOWER(TRIM(education)),
+	LOWER(TRIM("default")),
+	balance,
+	LOWER(TRIM(housing)),
+	LOWER(TRIM(loan)),
+	LOWER(TRIM(contact)),
+    day,
+    LOWER(TRIM(month)),
+    duration,
+    campaign,
+    pdays,
+    previous,
+    LOWER(TRIM(poutcome)),
+    LOWER(TRIM(deposit))
+
+FROM bank
+WHERE
+	age BETWEEN 18 AND 100
+	AND balance IS NOT NULL
+	AND balance IS NOT NULL
+    AND day BETWEEN 1 AND 31
+    AND duration >= 0
+    AND campaign >= 1
+    AND pdays >= -1
+    AND previous >= 0
+
+    AND LOWER(TRIM("default")) IN ('yes', 'no')
+    AND LOWER(TRIM(housing)) IN ('yes', 'no')
+    AND LOWER(TRIM(loan)) IN ('yes', 'no')
+    AND LOWER(TRIM(deposit)) IN ('yes', 'no')
+
+    AND LOWER(TRIM(month)) IN (
+        'jan', 'feb', 'mar', 'apr',
+        'may', 'jun', 'jul', 'aug',
+        'sep', 'oct', 'nov', 'dec'
+    )
+
+	AND NULLIF(TRIM(job), '') IS NOT NULL
+    AND NULLIF(TRIM(marital), '') IS NOT NULL
+    AND NULLIF(TRIM(education), '') IS NOT NULL
+    AND NULLIF(TRIM(contact), '') IS NOT NULL
+    AND NULLIF(TRIM(poutcome), '') IS NOT NULL;
+
+-- Check bảng clean
+SELECT
+    (SELECT COUNT(*) FROM Bank) AS raw_rows,
+    (SELECT COUNT(*) FROM bank_clean) AS clean_rows,
+    (SELECT COUNT(*) FROM Bank)
+      - (SELECT COUNT(*) FROM bank_clean) AS rejected_rows;
+
+
+-- Load data warehouse
+CREATE DATABASE IF NOT EXISTS bank_warehouse;
+DROP TABLE IF EXISTS 
