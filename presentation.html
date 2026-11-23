@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank Marketing ETL Pipeline - Project Presentation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
+    --accent: #38bdf8;
+    --accent2: #818cf8;
+    --accent3: #34d399;
+    --accent4: #fb923c;
+    --accent5: #f472b6;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border: #334155;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* ── Slide Container ── */
+  .slides-wrapper {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 5rem;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .slide.prev {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  /* ── Navigation ── */
+  .nav {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    z-index: 100;
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(12px);
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+
+  .nav button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.4rem;
+    transition: all 0.2s;
+  }
+
+  .nav button:hover { color: var(--accent); background: rgba(56, 189, 248, 0.1); }
+
+  .nav .dots { display: flex; gap: 0.5rem; }
+
+  .nav .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .nav .dot.active { background: var(--accent); transform: scale(1.3); }
+
+  .slide-counter {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    min-width: 3.5rem;
+    text-align: center;
+  }
+
+  /* ── Typography ── */
+  h1 { font-size: 3rem; font-weight: 800; line-height: 1.1; }
+  h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
+  h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-top: 0.75rem; font-weight: 400; }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Cards / Grid ── */
+  .grid { display: grid; gap: 1.25rem; width: 100%; max-width: 1100px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .card:hover { background: var(--bg-card-hover); transform: translateY(-2px); border-color: var(--accent); }
+
+  .card .icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+  /* ── Pipeline Flow ── */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    max-width: 1000px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .pipe-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-radius: 1rem;
+    min-width: 140px;
+    text-align: center;
+  }
+
+  .pipe-node .icon { font-size: 2.2rem; margin-bottom: 0.5rem; }
+  .pipe-node .label { font-weight: 600; font-size: 0.95rem; }
+  .pipe-node .sub { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem; }
+
+  .pipe-arrow {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin: 0 0.3rem;
+  }
+
+  .pipe-raw { background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); }
+  .pipe-etl { background: rgba(129, 140, 248, 0.1); border: 1px solid rgba(129, 140, 248, 0.3); }
+  .pipe-dw  { background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); }
+
+  /* ── Tree ── */
+  .tree {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.75rem 2rem;
+    line-height: 1.8;
+    max-width: 700px;
+    width: 100%;
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  .tree .dir  { color: var(--accent); font-weight: 600; }
+  .tree .file { color: var(--text-muted); }
+  .tree .desc { color: #64748b; }
+
+  /* ── Tags ── */
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0.15rem 0.1rem;
+  }
+
+  .tag-blue   { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
+  .tag-purple { background: rgba(129, 140, 248, 0.15); color: var(--accent2); }
+  .tag-green  { background: rgba(52, 211, 153, 0.15); color: var(--accent3); }
+  .tag-orange { background: rgba(251, 146, 60, 0.15); color: var(--accent4); }
+
+  /* ── Table ── */
+  .info-table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+  }
+
+  .info-table th, .info-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+
+  .info-table th { color: var(--accent); font-weight: 600; }
+  .info-table td:first-child { font-weight: 500; }
+  .info-table td:last-child { color: var(--text-muted); }
+
+  /* ── Misc ── */
+  .badge {
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--accent3);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .content-block {
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  ul.check-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.check-list li {
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  ul.check-list li::before {
+    content: '✓';
+    color: var(--accent3);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .slide { padding: 2rem 1.5rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .pipeline { flex-direction: column; }
+    .pipe-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="slides-wrapper">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide active" data-index="0">
+    <div class="badge">MindX Data Engineering Project</div>
+    <h1>Bank Marketing<br><span class="gradient-text">ETL Data Pipeline</span></h1>
+    <p class="subtitle">Apache Airflow · PostgreSQL · Docker · CSV → Data Warehouse</p>
+    <p style="color: var(--text-muted); margin-top: 2rem; font-size: 0.9rem;">Nhấn <kbd style="background: var(--bg-card); padding: 0.2rem 0.5rem; border-radius: 0.3rem; border: 1px solid var(--border);">→</kbd> hoặc click nút bên dưới để chuyển slide</p>
+  </div>
+
+  <!-- SLIDE 2: Overview -->
+  <div class="slide" data-index="1">
+    <h2>📋 Tổng quan dự án</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <span class="icon">🎯</span>
+        <h3>Mục tiêu</h3>
+        <p>Xây dựng pipeline ETL hoàn chỉnh để xử lý dữ liệu chiến dịch marketing ngân hàng từ CSV vào Data Warehouse, tự động hóa bằng Airflow.</p>
+      </div>
+      <div class="card">
+        <span class="icon">📊</span>
+        <h3>Dữ liệu</h3>
+        <p>File Bank.csv chứa 11,162 bản ghi với 17 cột thông tin khách hàng: tuổi, nghề nghiệp, hôn nhân, khoản vay, kết quả chiến dịch, v.v.</p>
+      </div>
+      <div class="card">
+        <span class="icon">🏗️</span>
+        <h3>Kiến trúc</h3>
+        <p>3 layers: Raw (landing zone) → ETL (staging + cleaning) → DW (fact table). Mỗi layer có schema riêng trong PostgreSQL.</p>
+      </div>
+      <div class="card">
+        <span class="icon">🐳</span>
+        <h3>Triển khai</h3>
+        <p>Toàn bộ chạy trong Docker containers: PostgreSQL 15, Airflow 2.8.1 (webserver + scheduler), sử dụng LocalExecutor.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Tech Stack -->
+  <div class="slide" data-index="2">
+    <h2>🛠️ Công nghệ sử dụng</h2>
+    <div class="grid grid-4">
+      <div class="card" style="text-align:center;">
+        <span class="icon">🌊</span>
+        <h3>Apache Airflow</h3>
+        <p>v2.8.1 — Orchestration, scheduling, monitoring DAGs</p>
+        <span class="tag tag-blue">Orchestrator</span>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="icon">🐘</span>
+        <h3>PostgreSQL</h3>
+        <p>v15 — RDBMS chứa cả Airflow metadata và Data Warehouse</p>
+        <span class="tag tag-purple">Database</span>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="icon">🐳</span>
+        <h3>Docker</h3>
+        <p>Compose v3.8 — Container hoá toàn bộ services</p>
+        <span class="tag tag-green">Infrastructure</span>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="icon">🐍</span>
+        <h3>Python</h3>
+        <p>pandas, psycopg2 — Đọc CSV, transform, load data</p>
+        <span class="tag tag-orange">ETL Scripts</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Pipeline Architecture -->
+  <div class="slide" data-index="3">
+    <h2>🔄 Kiến trúc Pipeline</h2>
+    <div class="pipeline" style="margin-bottom: 2.5rem;">
+      <div class="pipe-node pipe-raw">
+        <span class="icon">📄</span>
+        <span class="label">Bank.csv</span>
+        <span class="sub">11,162 rows</span>
+      </div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node pipe-raw">
+        <span class="icon">📥</span>
+        <span class="label">raw.bank_raw</span>
+        <span class="sub">Landing zone (text)</span>
+      </div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node pipe-etl">
+        <span class="icon">🧹</span>
+        <span class="label">etl.bank_staging</span>
+        <span class="sub">Clean & Validate</span>
+      </div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node pipe-dw">
+        <span class="icon">🏛️</span>
+        <span class="label">dw.bank_fact</span>
+        <span class="sub">Data Warehouse</span>
+      </div>
+    </div>
+    <div class="grid grid-3" style="max-width: 900px;">
+      <div class="card">
+        <h3 style="color: var(--accent);">RAW Layer</h3>
+        <p>Tất cả cột lưu dạng TEXT. TRUNCATE + INSERT mỗi lần chạy. Giữ nguyên dữ liệu gốc.</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--accent2);">ETL Layer</h3>
+        <p>Parse kiểu dữ liệu, validate rules (age 18-100, balance, deposit yes/no...). Loại bỏ bản ghi lỗi.</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--accent3);">DW Layer</h3>
+        <p>Fact table cuối cùng. TRUNCATE + INSERT đảm bảo idempotent, không duplicate khi chạy lại.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: DAG Tasks -->
+  <div class="slide" data-index="4">
+    <h2>📋 DAG: Các Task trong Pipeline</h2>
+    <div class="pipeline" style="margin-bottom: 2rem;">
+      <div class="pipe-node" style="background: rgba(100,116,139,0.15); border: 1px solid rgba(100,116,139,0.3);">
+        <span class="icon">▶️</span>
+        <span class="label">start</span>
+      </div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node pipe-raw">
+        <span class="icon">📥</span>
+        <span class="label">ingest_csv</span>
+      </div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node pipe-etl">
+        <span class="icon">⚙️</span>
+        <span class="label">transform_load</span>
+      </div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node pipe-dw">
+        <span class="icon">✅</span>
+        <span class="label">post_check</span>
+      </div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node" style="background: rgba(100,116,139,0.15); border: 1px solid rgba(100,116,139,0.3);">
+        <span class="icon">⏹️</span>
+        <span class="label">end</span>
+      </div>
+    </div>
+    <table class="info-table">
+      <tr><th>Task</th><th>Script</th><th>Mô tả</th></tr>
+      <tr><td>start / end</td><td>EmptyOperator</td><td>Đánh dấu bắt đầu / kết thúc pipeline</td></tr>
+      <tr><td>ingest_csv_to_raw</td><td>load_csv_to_postgres_raw.py</td><td>Đọc CSV bằng pandas, TRUNCATE + INSERT vào raw.bank_raw</td></tr>
+      <tr><td>transform_load_dw</td><td>etl_bank_transform_load.py</td><td>Build staging table, validate, TRUNCATE + INSERT vào dw.bank_fact</td></tr>
+      <tr><td>post_run_check</td><td>post_run_check.py</td><td>Kiểm tra row counts và phân bố deposit</td></tr>
+    </table>
+  </div>
+
+  <!-- SLIDE 6: Directory Structure -->
+  <div class="slide" data-index="5">
+    <h2>📁 Cấu trúc thư mục</h2>
+    <div class="tree"><span class="dir">📦 Project Mindx II/</span>
+├── <span class="dir">dags/</span>
+│   ├── <span class="file">bank_e2e_csv_to_dw_dag.py</span>  <span class="desc">← DAG definition</span>
+│   ├── <span class="dir">data/</span>
+│   │   └── <span class="file">Bank.csv</span>              <span class="desc">← Dữ liệu nguồn (11,162 rows)</span>
+│   └── <span class="dir">scripts/</span>
+│       ├── <span class="file">load_csv_to_postgres_raw.py</span>  <span class="desc">← Ingest CSV → raw</span>
+│       ├── <span class="file">etl_bank_transform_load.py</span>  <span class="desc">← Transform + Load → DW</span>
+│       ├── <span class="file">post_run_check.py</span>           <span class="desc">← Validation checks</span>
+│       └── <span class="dir">debug/</span>
+│           ├── <span class="file">debug_ingest.py</span>         <span class="desc">← Debug ingest step</span>
+│           └── <span class="file">test_connection.py</span>      <span class="desc">← Test DB connection</span>
+├── <span class="dir">sql/</span>
+│   ├── <span class="file">01_create_database.sql</span>      <span class="desc">← Tạo bank_db</span>
+│   └── <span class="file">02_init_schema.sql</span>          <span class="desc">← Schemas + Tables</span>
+├── <span class="dir">logs/</span>                           <span class="desc">← Airflow logs</span>
+├── <span class="dir">plugins/</span>                        <span class="desc">← Airflow plugins</span>
+├── <span class="file">docker-compose.yaml</span>           <span class="desc">← Docker services config</span>
+├── <span class="file">.env</span>                            <span class="desc">← Environment variables</span>
+└── <span class="file">README.md</span>                       <span class="desc">← Documentation</span></div>
+  </div>
+
+  <!-- SLIDE 7: Validation & Quality -->
+  <div class="slide" data-index="6">
+    <h2>🔍 Data Validation & Quality</h2>
+    <div class="two-col">
+      <div>
+        <div class="card" style="margin-bottom: 1.25rem;">
+          <h3 style="color: var(--accent3);">✅ Validation Rules</h3>
+          <ul class="check-list">
+            <li>age: 18 – 100 tuổi</li>
+            <li>balance: phải là số nguyên hợp lệ</li>
+            <li>marital: married / single / divorced</li>
+            <li>default, housing, loan, deposit: yes / no</li>
+            <li>day: 1 – 31, month: jan – dec</li>
+            <li>duration ≥ 0, campaign ≥ 1</li>
+            <li>pdays ≥ -1, previous ≥ 0</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom: 1.25rem;">
+          <h3 style="color: var(--accent4);">🛡️ Chống Duplicate</h3>
+          <ul class="check-list">
+            <li>TRUNCATE + INSERT (idempotent) ở mỗi layer</li>
+            <li>RESTART IDENTITY reset auto-increment</li>
+            <li>Validate row count: staging == dw</li>
+            <li>Check duplicate theo toàn bộ business columns</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--accent5);">📝 Logging</h3>
+          <ul class="check-list">
+            <li>etl.etl_log ghi nhận mỗi step</li>
+            <li>Status: START → SUCCESS / FAIL</li>
+            <li>Mỗi lần chạy có RUN_ID riêng</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Docker Architecture -->
+  <div class="slide" data-index="7">
+    <h2>🐳 Docker Services</h2>
+    <div class="grid grid-3" style="margin-bottom: 2rem;">
+      <div class="card" style="text-align:center;">
+        <span class="icon">🐘</span>
+        <h3>PostgreSQL 15</h3>
+        <p>Chứa cả Airflow metadata DB và bank_db (Data Warehouse). Volume persistent.</p>
+        <span class="tag tag-blue">Port 5432</span>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="icon">🌐</span>
+        <h3>Airflow Webserver</h3>
+        <p>Giao diện web để monitor, trigger và quản lý DAGs.</p>
+        <span class="tag tag-purple">Port 8080</span>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="icon">⏰</span>
+        <h3>Airflow Scheduler</h3>
+        <p>Quản lý schedule, trigger tasks, theo dõi dependencies.</p>
+        <span class="tag tag-green">LocalExecutor</span>
+      </div>
+    </div>
+    <div class="card" style="max-width: 700px; text-align: center;">
+      <h3 style="color: var(--accent4);">🔐 Bảo mật</h3>
+      <p>Credentials quản lý qua file <strong>.env</strong> — không hardcode trong source code. Docker Compose đọc biến môi trường từ env_file.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: Thank you -->
+  <div class="slide" data-index="8">
+    <div class="badge">🎉 Hoàn thành</div>
+    <h1 style="margin-bottom: 1rem;">Cảm ơn đã<br><span class="gradient-text">lắng nghe!</span></h1>
+    <p class="subtitle" style="max-width: 500px; text-align: center;">
+      Pipeline ETL hoàn chỉnh, tự động hóa với Airflow,<br>
+      đảm bảo chất lượng dữ liệu và dễ dàng mở rộng.
+    </p>
+    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+      <span class="tag tag-blue" style="font-size: 0.9rem; padding: 0.4rem 1rem;">Apache Airflow</span>
+      <span class="tag tag-purple" style="font-size: 0.9rem; padding: 0.4rem 1rem;">PostgreSQL</span>
+      <span class="tag tag-green" style="font-size: 0.9rem; padding: 0.4rem 1rem;">Docker</span>
+      <span class="tag tag-orange" style="font-size: 0.9rem; padding: 0.4rem 1rem;">Python ETL</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prevBtn" onclick="changeSlide(-1)">◀</button>
+  <div class="dots" id="dots"></div>
+  <span class="slide-counter" id="counter">1 / 9</span>
+  <button id="nextBtn" onclick="changeSlide(1)">▶</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  let current = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToSlide(index) {
+    if (index < 0 || index >= slides.length || index === current) return;
+    const direction = index > current ? 1 : -1;
+    slides[current].classList.remove('active');
+    slides[current].classList.add(direction > 0 ? 'prev' : '');
+    slides[current].style.transform = direction > 0 ? 'translateX(-60px)' : 'translateX(60px)';
+
+    current = index;
+    slides[current].classList.remove('prev');
+    slides[current].classList.add('active');
+
+    // Update dots
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    counter.textContent = `${current + 1} / ${slides.length}`;
+  }
+
+  function changeSlide(dir) {
+    goToSlide(current + dir);
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+    if (e.key === 'Home') { e.preventDefault(); goToSlide(0); }
+    if (e.key === 'End') { e.preventDefault(); goToSlide(slides.length - 1); }
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+  });
+</script>
+
+</body>
+</html>

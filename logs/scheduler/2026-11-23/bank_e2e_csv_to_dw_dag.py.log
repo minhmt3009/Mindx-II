@@ -1,0 +1,98 @@
+[2026-11-23T03:46:45.334+0000] {processor.py:161} INFO - Started process (PID=181) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:46:45.338+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:46:45.342+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:46:45.341+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:46:45.455+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:46:45.495+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:46:45.494+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:46:45.541+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:46:45.540+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:46:45.620+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.296 seconds
+[2026-11-23T03:47:15.805+0000] {processor.py:161} INFO - Started process (PID=194) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:47:15.818+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:47:15.825+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:47:15.823+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:47:15.955+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:47:16.362+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:47:16.360+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:47:16.395+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:47:16.395+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:47:16.482+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.698 seconds
+[2026-11-23T03:47:46.749+0000] {processor.py:161} INFO - Started process (PID=235) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:47:46.754+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:47:46.757+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:47:46.757+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:47:46.815+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:47:46.885+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:47:46.884+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:47:46.914+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:47:46.914+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:47:46.965+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.224 seconds
+[2026-11-23T03:48:17.286+0000] {processor.py:161} INFO - Started process (PID=249) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:48:17.289+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:48:17.295+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:48:17.294+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:48:17.368+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:48:17.446+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:48:17.445+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:48:17.479+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:48:17.478+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:48:17.544+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.265 seconds
+[2026-11-23T03:48:47.891+0000] {processor.py:161} INFO - Started process (PID=265) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:48:47.895+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:48:47.898+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:48:47.898+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:48:47.958+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:48:48.027+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:48:48.026+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:48:48.061+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:48:48.060+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:48:48.101+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.220 seconds
+[2026-11-23T03:49:19.090+0000] {processor.py:161} INFO - Started process (PID=281) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:49:19.093+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:49:19.097+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:49:19.095+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:49:19.157+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:49:19.225+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:49:19.224+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:49:19.256+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:49:19.255+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:49:19.310+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.225 seconds
+[2026-11-23T03:49:49.558+0000] {processor.py:161} INFO - Started process (PID=297) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:49:49.561+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:49:49.565+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:49:49.565+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:49:49.629+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:49:49.699+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:49:49.699+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:49:49.727+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:49:49.727+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:49:49.771+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.221 seconds
+[2026-11-23T03:50:19.983+0000] {processor.py:161} INFO - Started process (PID=320) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:50:19.987+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:50:19.991+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:50:19.991+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:50:20.060+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:50:20.119+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:50:20.119+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:50:20.149+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:50:20.148+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:50:20.237+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.264 seconds
+[2026-11-23T03:50:50.625+0000] {processor.py:161} INFO - Started process (PID=335) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:50:50.630+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:50:50.635+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:50:50.634+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:50:50.705+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:50:50.764+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:50:50.763+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:50:50.792+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:50:50.791+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:50:50.865+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.247 seconds
+[2026-11-23T03:51:21.056+0000] {processor.py:161} INFO - Started process (PID=350) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:51:21.060+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:51:21.065+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:51:21.064+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:51:21.126+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:51:21.194+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:51:21.193+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:51:21.224+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:51:21.223+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:51:21.301+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.252 seconds
+[2026-11-23T03:51:52.356+0000] {processor.py:161} INFO - Started process (PID=365) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:51:52.359+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:51:52.362+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:51:52.362+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:51:52.421+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:51:52.491+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:51:52.490+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:51:52.559+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:51:52.557+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:51:52.635+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.285 seconds
+[2026-11-23T03:52:22.904+0000] {processor.py:161} INFO - Started process (PID=370) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:52:22.909+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:52:22.915+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:52:22.914+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:52:22.988+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:52:23.052+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:52:23.051+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:52:23.084+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:52:23.083+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:52:23.161+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.268 seconds
+[2026-11-23T03:52:53.720+0000] {processor.py:161} INFO - Started process (PID=393) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:52:53.727+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:52:53.733+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:52:53.732+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:52:53.817+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:52:53.929+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:52:53.928+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:52:53.993+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:52:53.990+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:52:54.081+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.369 seconds
+[2026-11-23T03:53:24.658+0000] {processor.py:161} INFO - Started process (PID=405) to work on /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:53:24.664+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py for tasks to queue
+[2026-11-23T03:53:24.668+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:53:24.667+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:53:24.744+0000] {processor.py:840} INFO - DAG(s) 'bank_e2e_csv_to_dw' retrieved from /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py
+[2026-11-23T03:53:24.804+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:53:24.803+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-11-23T03:53:24.829+0000] {logging_mixin.py:188} INFO - [2026-11-23T03:53:24.829+0000] {dag.py:3823} INFO - Setting next_dagrun for bank_e2e_csv_to_dw to None, run_after=None
+[2026-11-23T03:53:24.906+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bank_e2e_csv_to_dw_dag.py took 0.261 seconds

@@ -18,14 +18,14 @@ def env(name: str, default: str | None = None) -> str:
     return v.strip()
 
 DB = {
-    "host": env("DB_HOST", "postgres"),
-    "port": int(env("DB_PORT", "5432")),
-    "database": env("DB_NAME", "bank_db"),
-    "user": env("DB_USER", "airflow"),
-    "password": env("DB_PASS", "airflow"),
+    "host": env("DB_HOST"),
+    "port": int(env("DB_PORT")),
+    "database": env("DB_NAME"),
+    "user": env("DB_USER"),
+    "password": env("DB_PASS"),
 }
 
-CSV_PATH = env("CSV_PATH", "/opt/airflow/dags/data/Bank.csv")
+CSV_PATH = env("CSV_PATH")
 
 SQL_LOG = "INSERT INTO etl.etl_log(run_id, step_name, status, message) VALUES (%s,%s,%s,%s);"
 
@@ -37,7 +37,7 @@ def main() -> None:
         with conn.cursor() as cur:
             cur.execute(SQL_LOG, (RUN_ID, "INGEST", "START", f"Loading CSV: {CSV_PATH} rows={len(df)}"))
 
-            cur.execute("TRUNCATE TABLE raw.bank_raw;")
+            cur.execute("TRUNCATE TABLE raw.bank_raw RESTART IDENTITY;")
             insert_sql = '''
 INSERT INTO raw.bank_raw(
   age_text, job, marital, education, default_text,

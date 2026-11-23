@@ -17,11 +17,11 @@ def env(name: str, default: str | None = None) -> str:
     return v.strip()
 
 DB = {
-    "host": env("DB_HOST", "postgres"),
-    "port": int(env("DB_PORT", "5432")),
-    "database": env("DB_NAME", "bank_db"),
-    "user": env("DB_USER", "airflow"),
-    "password": env("DB_PASS", "airflow"),
+    "host": env("DB_HOST"),
+    "port": int(env("DB_PORT")),
+    "database": env("DB_NAME"),
+    "user": env("DB_USER"),
+    "password": env("DB_PASS"),
     "connect_timeout": int(env("DB_TIMEOUT", "10")),
 }
 
@@ -95,7 +95,7 @@ WITH parsed AS (
   FROM raw.bank_raw
 ),
 cleaned AS (
-  SELECT 
+  SELECT
     age, job, marital, education, default_flag,
     balance, housing, loan, contact, day,
     month, duration, campaign, pdays,
@@ -125,7 +125,9 @@ SELECT age, job, marital, education, default_flag, balance, housing, loan, conta
 FROM cleaned;
 '''
 
-SQL_UPSERT_DW = '''
+SQL_LOAD_DW = '''
+TRUNCATE TABLE dw.bank_fact RESTART IDENTITY;
+
 INSERT INTO dw.bank_fact(
   age, job, marital, education, default_flag,
   balance, housing, loan, contact, day,
@@ -137,29 +139,19 @@ SELECT
   balance, housing, loan, contact, day,
   month, duration, campaign, pdays,
   previous, poutcome, deposit
-FROM etl.bank_staging_clean
-ON CONFLICT (record_id) DO UPDATE
-SET age = EXCLUDED.age,
-    job = EXCLUDED.job,
-    marital = EXCLUDED.marital,
-    education = EXCLUDED.education,
-    default_flag = EXCLUDED.default_flag,
-    balance = EXCLUDED.balance,
-    housing = EXCLUDED.housing,
-    loan = EXCLUDED.loan,
-    contact = EXCLUDED.contact,
-    day = EXCLUDED.day,
-    month = EXCLUDED.month,
-    duration = EXCLUDED.duration,
-    campaign = EXCLUDED.campaign,
-    pdays = EXCLUDED.pdays,
-    previous = EXCLUDED.previous,
-    poutcome = EXCLUDED.poutcome,
-    deposit = EXCLUDED.deposit,
-    loaded_at = NOW();
+FROM etl.bank_staging_clean;
 '''
 
-SQL_VALIDATE_DUP = "SELECT record_id, COUNT(*) FROM dw.bank_fact GROUP BY record_id HAVING COUNT(*)>1;"
+SQL_VALIDATE_DUP = """
+SELECT age, job, marital, education, default_flag, balance, housing, loan,
+       contact, day, month, duration, campaign, pdays, previous, poutcome, deposit,
+       COUNT(*) AS cnt
+FROM dw.bank_fact
+GROUP BY age, job, marital, education, default_flag, balance, housing, loan,
+         contact, day, month, duration, campaign, pdays, previous, poutcome, deposit
+HAVING COUNT(*) > 1
+LIMIT 10;
+"""
 SQL_COUNT = "SELECT (SELECT COUNT(*) FROM etl.bank_staging_clean), (SELECT COUNT(*) FROM dw.bank_fact);"
 
 def log(cur, step: str, status: str, msg: str = ""):
@@ -175,24 +167,28 @@ def main():
             cur.execute(SQL_BUILD_STAGING)
             log(cur,"TRANSFORM","SUCCESS","Staging built")
 
-            log(cur,"LOAD","START","Upsert to DW")
-            cur.execute(SQL_UPSERT_DW)
-            log(cur,"LOAD","SUCCESS","Upsert done")
+            log(cur,"LOAD","START","Load to DW (truncate + insert)")
+            cur.execute(SQL_LOAD_DW)
+            log(cur,"LOAD","SUCCESS","Load done")
 
             log(cur,"VALIDATE","START","Check duplicates + counts")
             cur.execute(SQL_VALIDATE_DUP)
-            if cur.fetchall():
-                raise RuntimeError("Duplicate record_id detected in dw.bank_fact")
+            dups = cur.fetchall()
+            if dups:
+                dup_info = "; ".join(str(r) for r in dups[:3])
+                raise RuntimeError(f"Duplicate rows in dw.bank_fact (by all business columns): {dup_info}")
 
             cur.execute(SQL_COUNT)
             staging_cnt, dw_cnt = cur.fetchone()
             if staging_cnt <= 0:
                 raise RuntimeError("staging_cnt=0 (no valid rows after cleaning)")
+            if staging_cnt != dw_cnt:
+                raise RuntimeError(f"Row count mismatch: staging={staging_cnt}, dw={dw_cnt}")
             log(cur,"VALIDATE","SUCCESS",f"staging_cnt={staging_cnt}, dw_cnt={dw_cnt}")
 
             log(cur,"PIPELINE","SUCCESS","ETL finished")
         conn.commit()
-        print(f"ETL PASSED | RUN_ID={RUN_ID}")
+        print(f"ETL PASSED | RUN_ID={RUN_ID} | staging={staging_cnt} | dw={dw_cnt}")
         sys.exit(0)
     except Exception as e:
         conn.rollback()
